@@ -37,8 +37,8 @@ else
     sudo sed -i "s/^PASSWORD=.*/PASSWORD=$password/" $current_dir/ModuleEcholink.conf
 
     echo "copiando Configuraçoes."
-    cp $current_dir/svxlink.conf /etc/svxlink/svxlink.conf
-    cp $current_dir/ModuleEchoLink.conf /etc/svxlink/svxlink.d/ModuleEchoLink.conf
+    cp $current_dir/svxlink.conf /etc/svxlink/
+    cp $current_dir/ModuleEchoLink.conf /etc/svxlink/svxlink.d/
 
     echo "Reiniciando svxlink..."
     sudo systemctl restart svxlink
