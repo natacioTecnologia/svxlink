@@ -13,30 +13,32 @@ else
   echo "svxlink já está instalado."
 fi
 
+current_dir=$(pwd)
+
 if ! dpkg -l | grep -q svxlink; then
   echo "svxlink não está instalado."
 else
     echo "copiando audios."
-    cp -r pt_BR /usr/share/svxlink/sounds/pt_BR
-    cp Logic.tcl /usr/share/svxlink/events.d/Logic.tcl
+    cp -r $current_dir/pt_BR /usr/share/svxlink/sounds/pt_BR
+    cp $current_dir/Logic.tcl /usr/share/svxlink/events.d/Logic.tcl
 
     echo "Digite seu indicativo:"
     read callsign
 
     callsign_upper=$(echo "$callsign" | tr '[:lower:]' '[:upper:]')
     
-    sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper/" svxlink.conf
+    sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper/" $current_dir/svxlink.conf
 
-    sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper-L/" ModuleEcholink.conf
+    sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper-L/" $current_dir/ModuleEcholink.conf
 
     echo "Digite a senha do echolink:"
     read password
 
-    sudo sed -i "s/^PASSWORD=.*/PASSWORD=$password/" ModuleEcholink.conf
+    sudo sed -i "s/^PASSWORD=.*/PASSWORD=$password/" $current_dir/ModuleEcholink.conf
 
     echo "copiando Configuraçoes."
-    cp svxlink.conf /etc/svxlink/svxlink.conf
-    cp ModuleEchoLink.conf /etc/svxlink/svxlink.d/ModuleEchoLink.conf
+    cp $current_dir/svxlink.conf /etc/svxlink/svxlink.conf
+    cp $current_dir/ModuleEchoLink.conf /etc/svxlink/svxlink.d/ModuleEchoLink.conf
 
     echo "Reiniciando svxlink..."
     sudo systemctl restart svxlink
