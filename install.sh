@@ -9,6 +9,8 @@ if ! dpkg -l | grep -q svxlink; then
   sudo apt update
   sudo apt-get install -y svxlink-server
 
+  sudo apt install alsa-utils
+
 else
   echo "svxlink já está instalado."
 fi
