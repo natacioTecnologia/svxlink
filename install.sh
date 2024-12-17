@@ -20,6 +20,20 @@ else
     cp -r pt_BR /usr/share/svxlink/sounds/pt_BR
     cp Logic.tcl /usr/share/svxlink/events.d/Logic.tcl
 
+    echo "Digite seu indicativo:"
+    read callsign
+
+    callsign_upper=$(echo "$callsign" | tr '[:lower:]' '[:upper:]')
+    
+    sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper/" svxlink.conf
+
+    sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper-L/" ModuleEcholink.conf
+
+    echo "Digite a senha do echolink:"
+    read password
+
+    sudo sed -i "s/^PASSWORD=.*/PASSWORD=$password/" ModuleEcholink.conf
+
     echo "copiando Configuraçoes."
     cp svxlink.conf /etc/svxlink/svxlink.conf
     cp ModuleEchoLink.conf /etc/svxlink/svxlink.d/ModuleEchoLink.conf
