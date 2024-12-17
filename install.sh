@@ -2,9 +2,6 @@
 
 # Verifica se o svxlink está instalado
 if ! dpkg -l | grep -q svxlink; then
-  echo "Adicionando depedencias..."
-  sudo add-apt-repository ppa:felix.lechner/hamradio
-
   echo "Atualizando lista de pacotes..."
   sudo apt update
   sudo apt-get install -y svxlink-server
