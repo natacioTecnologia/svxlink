@@ -29,12 +29,12 @@ else
     
     sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper/" $current_dir/svxlink.conf
 
-    sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper-L/" $current_dir/ModuleEcholink.conf
+    sudo sed -i "s/^CALLSIGN=.*/CALLSIGN=$callsign_upper-L/" $current_dir/ModuleEchoLink.conf
 
     echo "Digite a senha do echolink:"
     read password
 
-    sudo sed -i "s/^PASSWORD=.*/PASSWORD=$password/" $current_dir/ModuleEcholink.conf
+    sudo sed -i "s/^PASSWORD=.*/PASSWORD=$password/" $current_dir/ModuleEchoLink.conf
 
     echo "copiando Configuraçoes."
     cp $current_dir/svxlink.conf /etc/svxlink/
